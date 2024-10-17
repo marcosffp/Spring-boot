@@ -95,7 +95,7 @@ spring.application.name=boot-crud
 
 spring.datasource.url=jdbc:mysql://localhost:3306/javainusedb?createDatabaseIfNotExist=true&useSSL=false
 spring.datasource.username=root
-spring.datasource.password=ER10ppuc@#
+spring.datasource.password=senha
 
 spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQLDialect
 spring.jpa.hibernate.ddl-auto=update
