@@ -458,7 +458,6 @@ public interface EmployeeService {
     EmployeeDto createEmployee(EmployeeDto employeeDto);
     EmployeeDto getEmployeeById(Long employeeId) throws EmployeeNotFoundException;
 }
-```informações sobre o funcionário.
 
 O método começa usando o `employeeRepository`, que é uma instância de um repositório Spring Data JPA, para recuperar um registro de funcionário do banco de dados utilizando o `employeeId`. O método `findById` retorna uma instância de `Optional<Employee>`, que pode conter o objeto `Employee` se ele existir.
 
