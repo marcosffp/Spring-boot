@@ -1,10 +1,8 @@
-Aqui está a organização sugerida para o `README.md`:
-
-```markdown
 # Spring Boot 3 + JPA + MySQL CRUD
 
 ## Implementação  
 Vamos utilizar o Spring Initializr para criar um projeto Spring Boot da seguinte forma:
+
 ![alt text](img/image.png)
 
 
