@@ -244,6 +244,40 @@ public class JwtTokenUtil implements Serializable {
         return Keys.hmacShaKeyFor(keyBytes);
     }
 
+    public String getUsername(String token) {
+        return getClaim(token, Claims::getSubject);
+    }
+
+    public <T> T getClaim(String token, Function<Claims, T> claimsResolver) {
+        final Claims claims = getAllClaims(token);
+        return claimsResolver.apply(claims);
+    }
+
+    private boolean isTokenExpired(String token) {
+        return getExpiration(token).before(new Date());
+    }
+
+    private Date getExpiration(String token) {
+        return getClaim(token, Claims::getExpiration);
+    }
+
+    private Claims getAllClaims(String token) {
+        return Jwts.parserBuilder().setSigningKey(getSignInKey()).build().parseClaimsJws(token).getBody();
+    }
+
+    public Boolean validateToken(String token, UserDetails userDetails) {
+        final String username = getUsernameFromToken(token);
+        return (username.equals(userDetails.getUsername())  && !isTokenExpired(token));
+    }
+
+    public String getUsernameFromToken(String token) {
+        return getClaimFromToken(token, Claims::getSubject);
+    }
+
+    public <T> T getClaimFromToken(String token, Function<Claims, T> claimsResolver) {
+        final Claims claims = getAllClaims(token);
+        return claimsResolver.apply(claims);
+    }
 }
 ```
 Em seguida, crie a classe `JwtRequest`, que será usada para as requisições de usuário recebidas e terá os campos `username` e `password`.
